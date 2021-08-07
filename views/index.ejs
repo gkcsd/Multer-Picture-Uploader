@@ -28,7 +28,7 @@
 
         <div class="card" style="width: 18rem;">
             <img class="card-img-top"
-                src="https://images.pexels.com/photos/1144256/pexels-photo-1144256.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350"
+                src="<%= typeof filename == 'undefined' ? 'https://images.pexels.com/photos/1144256/pexels-photo-1144256.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350' : filename %>"
                 alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title">Multer File Uploader</h5>
@@ -41,7 +41,7 @@
                             required>
                         <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
                         <p class="red">
-                            Error messages will go here..
+                            <%= typeof message == 'undefined' ? "" : message %>
                         </p>
                     </div>
                     <br />
