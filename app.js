@@ -1,17 +1,17 @@
 const express = require('express');
-const ejs = require('ejs');
 const multer = require('multer');
+const ejs = require('ejs');
 const path = require('path');
 
 const app = express();
 const port = process.env.PORT || 3000;
 
-//setting multer here..
+//setting multer here
 var storage = multer.diskStorage({
-    destination: function(req,file,cb) {
+    destination: function(req , file, cb) {
         cb(null, "./public/myupload");
     },
-    filename: function(req,file,cb) {
+    filename: function(req, file, cb) {
         cb(null, file.fieldname + "-" + Date.now() + path.extname(file.originalname));
     }
 });
@@ -22,16 +22,16 @@ var upload = multer({
 
 //set for ejs
 app.set("view engine", "ejs");
-//set to static folder
+//set for static folder
 app.use(express.static("./public"));
 
 app.get("/", (req,res) => {
     res.render("index");
 });
 
-//Desc
+//Description
 app.post("/upload", (req,res) => {
-    upload(req,res, (error) => {
+    upload(req, res, (error) => {
         if(error) {
             res.render("index", {
                 message: error,
@@ -39,7 +39,7 @@ app.post("/upload", (req,res) => {
         }else{
             res.render("index", {
                 message: "Successfully uploaded..",
-                filename: `myupload/${req.file.filename}`,
+                filename: `myupload/${req.file.filename}`
             });
         }
     });
